@@ -18,3 +18,17 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> SQLite ###
+*.db
+*.sqlite
+*.sqlite3
+###< SQLite ###
+
+###> phpStorm ###
+.idea/
+*.iml
+*.iws
+*.ipr
+.DS_Store
+###< phpStorm ###
