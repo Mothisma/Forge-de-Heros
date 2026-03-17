@@ -6,6 +6,7 @@ use App\Repository\CharacterClassRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CharacterClassRepository::class)]
 class CharacterClass
@@ -22,12 +23,15 @@ class CharacterClass
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 6, max: 12)]
+    #[Assert\DivisibleBy(2)]
     private ?int $healthDice = null;
 
     /**
      * @var Collection<int, Skill>
      */
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'Classes')]
+    #[Assert\Count(min: 2, max: 4)]
     private Collection $Skills;
 
     /**

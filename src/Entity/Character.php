@@ -6,8 +6,10 @@ use App\Repository\CharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CharacterRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Character
 {
     #[ORM\Id]
@@ -19,24 +21,31 @@ class Character
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 1, max: 20)]
     private ?int $level = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 8, max: 15)]
     private ?int $strength = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 8, max: 15)]
     private ?int $dexterity = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 8, max: 15)]
     private ?int $constitution = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 8, max: 15)]
     private ?int $inteligence = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 8, max: 15)]
     private ?int $wisdom = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 8, max: 15)]
     private ?int $charisma = null;
 
     #[ORM\Column]
@@ -261,5 +270,12 @@ class Character
         }
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function calculateHealthPoints(): void
+    {
+        $this->healthPoints = $this->Class->getHealthDice() + floor(($this->constitution - 10) / 2);
     }
 }
