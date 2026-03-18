@@ -17,15 +17,17 @@ class PartyType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('maxSize')
+            ->add('maxSize', null, ['attr' => ['min' => 0]])
             ->add('User', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
+                'placeholder' => 'Choose User',
             ])
             ->add('Characters', EntityType::class, [
                 'class' => Character::class,
                 'choice_label' => 'id',
                 'multiple' => true,
+                'required' => false,
             ])
         ;
     }
