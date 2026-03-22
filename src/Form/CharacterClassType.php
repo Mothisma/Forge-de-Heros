@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
 
 class CharacterClassType extends AbstractType
 {
@@ -17,11 +18,20 @@ class CharacterClassType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('healthDice')
-            ->add('Skills', EntityType::class, [
+            ->add('skills', EntityType::class, [
                 'class' => Skill::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
-            ])
+                'expanded' => true,
+                'label' => 'Compétences',
+
+                'constraints' => [
+                    new Count(
+                        min: 2,
+                        max: 4,
+                    )
+                ]
+            ]);
         ;
     }
 

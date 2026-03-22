@@ -8,20 +8,28 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>HealthDice</th>
+                <th>Compétence</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for character_class in character_classes %}
             <tr>
-                <td>{{ character_class.id }}</td>
                 <td>{{ character_class.name }}</td>
                 <td>{{ character_class.description }}</td>
                 <td>{{ character_class.healthDice }}</td>
+                <td>
+                    {% for skill in character_class.skills %}
+                    <a href="{{ path('app_skill_show', {'id': skill.id}) }}">
+                        {{ skill.name }}
+                        </a>{% if not loop.last %}, {% endif %}
+                    {% else %}
+                        Aucune compétence
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('app_character_class_show', {'id': character_class.id}) }}">show</a>
                     <a href="{{ path('app_character_class_edit', {'id': character_class.id}) }}">edit</a>
