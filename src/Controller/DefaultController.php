@@ -14,5 +14,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/')]
 final class DefaultController extends AbstractController
 {
-
+    #[Route('/', name: 'home')]
+public function index(): Response
+    {
+        return $this->render('default/index.html.twig');
+    }
 }

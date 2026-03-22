@@ -1,0 +1,24 @@
+<header>
+    <nav>
+        <a href="{{ path('home') }}">Accueil</a>
+
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Se connecter</a>
+            <a href="{{ path('app_register') }}">S'inscrire</a>
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_character_index') }}">Vos personnages</a>
+            <a href="{{ path('app_party_index') }}">Groupes</a>
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="/user">Utilisateurs</a>
+            <a href="/skill">Compétences</a>
+            <a href="/race">Races</a>
+            <a href="/character/class">Classes</a>
+        {% endif %}
+    </nav>
+</header>

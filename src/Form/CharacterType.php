@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CharacterType extends AbstractType
 {
@@ -18,31 +19,27 @@ class CharacterType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('level')
-            ->add('strength')
-            ->add('dexterity')
-            ->add('constitution')
-            ->add('inteligence')
-            ->add('wisdom')
-            ->add('charisma')
-            ->add('healthPoints')
-            ->add('image')
-            ->add('User', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
+            ->add('level', null, ['attr' => ['min' => 1, 'max' => 20]])
+            ->add('strength', null, ['attr' => ['min' => 8, 'max' => 15]])
+            ->add('dexterity', null, ['attr' => ['min' => 8, 'max' => 15]])
+            ->add('constitution', null, ['attr' => ['min' => 8, 'max' => 15]])
+            ->add('inteligence', null, ['attr' => ['min' => 8, 'max' => 15]])
+            ->add('wisdom', null, ['attr' => ['min' => 8, 'max' => 15]])
+            ->add('charisma', null, ['attr' => ['min' => 8, 'max' => 15]])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true, // coche pour supprimer l'image existante
+                'delete_label' => 'Supprimer l\'avatar',
+                'download_uri' => false,  // pas de lien de téléchargement
+                'label' => 'Avatar'
             ])
             ->add('Race', EntityType::class, [
                 'class' => Race::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('Class', EntityType::class, [
                 'class' => CharacterClass::class,
-                'choice_label' => 'id',
-            ])
-            ->add('parties', EntityType::class, [
-                'class' => Party::class,
-                'choice_label' => 'id',
-                'multiple' => true,
+                'choice_label' => 'name',
             ])
         ;
     }
