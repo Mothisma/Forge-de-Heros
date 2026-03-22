@@ -25,10 +25,11 @@ class PartyType extends AbstractType
             ])
             ->add('Characters', EntityType::class, [
                 'class' => Character::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
-                'required' => false,
-            ])
+                'expanded' => true,
+                'label' => 'Compétences',
+            ]);
         ;
     }
 
