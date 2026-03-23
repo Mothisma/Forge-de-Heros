@@ -1,4 +1,102 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<p>Points restants : <span id="points-remaining">27</span> / 27</p>
+
+{{ form_row(form.name) }}
+{{ form_row(form.level) }}
+
+{{ form_row(form.strength) }}
+{{ form_row(form.dexterity) }}
+{{ form_row(form.constitution) }}
+{{ form_row(form.inteligence) }}
+{{ form_row(form.wisdom) }}
+{{ form_row(form.charisma) }}
+
+{{ form_row(form.imageFile) }}
+{{ form_row(form.race) }}
+{{ form_row(form.class) }}
+
+<button type="submit" class="btn">{{ button_label|default('Sauvegarder') }}</button>
+
 {{ form_end(form) }}
+
+<script>
+    const maxPoints = 27;
+    const baseStat = 8;
+    const maxStat = 15;
+
+    const fields = [
+        document.getElementById("character_strength"),
+        document.getElementById("character_dexterity"),
+        document.getElementById("character_constitution"),
+        document.getElementById("character_inteligence"),
+        document.getElementById("character_wisdom"),
+        document.getElementById("character_charisma")
+    ];
+
+    let previousValues = {};
+    let lastFieldTouched = null;
+
+    fields.forEach(field => {
+        if(!field.value) field.value = baseStat;
+        previousValues[field.id] = parseInt(field.value);
+        field.addEventListener("change", () => {
+            lastFieldTouched = field;
+            validateField(field);
+        });
+    });
+
+    function validateField(field) {
+        let value = parseInt(field.value) || baseStat;
+
+        value = Math.max(baseStat, Math.min(maxStat, value));
+
+        let totalWithoutField = 0;
+        fields.forEach(f => {
+            if (f !== field) {
+                totalWithoutField += (parseInt(f.value) || baseStat) - baseStat;
+            }
+        });
+
+        let remaining = maxPoints - totalWithoutField;
+        let maxAllowed = baseStat + remaining;
+
+        if (value > maxAllowed) {
+            value = maxAllowed;
+        }
+
+        field.value = value;
+        previousValues[field.id] = value;
+
+        updatePoints();
+    }
+
+    function updatePoints() {
+        let totalUsed = 0;
+        fields.forEach(f => {
+            totalUsed += (parseInt(f.value)) - baseStat;
+        });
+
+        let remaining = maxPoints - totalUsed;
+        document.getElementById("points-remaining").textContent = remaining;
+
+        document.querySelector("button[type='submit']").disabled = (remaining !== 0);
+    }
+
+    document.querySelector("form").addEventListener("submit", (e) => {
+        if(lastFieldTouched) {
+            validateField(lastFieldTouched);
+        }
+    });
+
+    const level = document.getElementById("character_level");
+    level.value = 1;
+    level.addEventListener("change", () => {
+        let value = parseInt(level.value);
+        if (isNaN(value)) value = 1;
+        value = Math.max(1, Math.min(20, value));
+        level.value = value;
+    });
+
+    updatePoints()
+</script>

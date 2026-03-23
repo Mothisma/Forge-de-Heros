@@ -1,30 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Character{% endblock %}
+{% block title %}Personnage{% endblock %}
 
 {% block body %}
-    <h1>Character</h1>
+    <h1>Personnage</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ character.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ character.name }}</td>
             </tr>
             <tr>
-                <th>Level</th>
+                <th>Niveau</th>
                 <td>{{ character.level }}</td>
             </tr>
             <tr>
-                <th>Strength</th>
+                <th>Force</th>
                 <td>{{ character.strength }}</td>
             </tr>
             <tr>
-                <th>Dexterity</th>
+                <th>Dextérité</th>
                 <td>{{ character.dexterity }}</td>
             </tr>
             <tr>
@@ -32,31 +28,39 @@
                 <td>{{ character.constitution }}</td>
             </tr>
             <tr>
-                <th>Inteligence</th>
+                <th>Intelligence</th>
                 <td>{{ character.inteligence }}</td>
             </tr>
             <tr>
-                <th>Wisdom</th>
+                <th>Sagesse</th>
                 <td>{{ character.wisdom }}</td>
             </tr>
             <tr>
-                <th>Charisma</th>
+                <th>Charisme</th>
                 <td>{{ character.charisma }}</td>
             </tr>
             <tr>
-                <th>HealthPoints</th>
+                <th>Point de vie</th>
                 <td>{{ character.healthPoints }}</td>
             </tr>
             <tr>
                 <th>Image</th>
                 <td>{{ character.image }}</td>
             </tr>
+            <tr>
+                <th>Race</th>
+                <td>{{ character.race.name }}</td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                <td>{{ character.class.name }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_character_index') }}">back to list</a>
+    <a href="{{ path('app_character_index') }}">Retour</a>
 
-    <a href="{{ path('app_character_edit', {'id': character.id}) }}">edit</a>
+    <a href="{{ path('app_character_edit', {'id': character.id}) }}">Modifier</a>
 
     {{ include('character/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Character index{% endblock %}
+{% block title %}Liste des personnages{% endblock %}
 
 {% block body %}
-    <h1>Character index</h1>
+    <h1>Liste des personnages</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Level</th>
-                <th>Strength</th>
-                <th>Dexterity</th>
+                <th>Nom</th>
+                <th>Niveau</th>
+                <th>Force</th>
+                <th>Dextérité</th>
                 <th>Constitution</th>
-                <th>Inteligence</th>
-                <th>Wisdom</th>
-                <th>Charisma</th>
-                <th>HealthPoints</th>
+                <th>Intelligence</th>
+                <th>Sagesse</th>
+                <th>Charisme</th>
+                <th>Point de vie</th>
                 <th>Image</th>
                 <th>actions</th>
             </tr>
@@ -35,17 +35,17 @@
                 <td>{{ character.healthPoints }}</td>
                 <td>{{ character.image }}</td>
                 <td>
-                    <a href="{{ path('app_character_show', {'id': character.id}) }}">show</a>
-                    <a href="{{ path('app_character_edit', {'id': character.id}) }}">edit</a>
+                    <a href="{{ path('app_character_show', {'id': character.id}) }}">Afficher</a>
+                    <a href="{{ path('app_character_edit', {'id': character.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="12">Aucun personnage enregistré</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_character_new') }}">Create new</a>
+    <a href="{{ path('app_character_new') }}">Nouveau personnage</a>
 {% endblock %}

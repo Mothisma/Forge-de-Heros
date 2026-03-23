@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Character{% endblock %}
+{% block title %}Nouveau personnage{% endblock %}
 
 {% block body %}
-    <h1>Create new Character</h1>
+    <h1>Créez votre personnage</h1>
 
     {{ include('character/_form.html.twig') }}
 
-    <a href="{{ path('app_character_index') }}">back to list</a>
+    <a href="{{ path('app_character_index') }}">Retour</a>
 {% endblock %}

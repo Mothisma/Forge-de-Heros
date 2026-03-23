@@ -33,11 +33,11 @@ class CharacterType extends AbstractType
                 'download_uri' => false,  // pas de lien de téléchargement
                 'label' => 'Avatar'
             ])
-            ->add('Race', EntityType::class, [
+            ->add('race', EntityType::class, [
                 'class' => Race::class,
                 'choice_label' => 'name',
             ])
-            ->add('Class', EntityType::class, [
+            ->add('class', EntityType::class, [
                 'class' => CharacterClass::class,
                 'choice_label' => 'name',
             ])
