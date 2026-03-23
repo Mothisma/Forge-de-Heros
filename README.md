@@ -17,6 +17,8 @@ php bin/console doctrine:migration:migrate
 
 php bin/console doctrine:fixtures:load
 
+yes
+
 symfony serve
 
 pour finir ouvrir le dossier php.ini
