@@ -51,32 +51,4 @@ final class PartyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_party_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Party $party, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(PartyType::class, $party);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_party_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('party/edit.html.twig', [
-            'party' => $party,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_party_delete', methods: ['POST'])]
-    public function delete(Request $request, Party $party, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$party->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($party);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_party_index', [], Response::HTTP_SEE_OTHER);
-    }
 }
