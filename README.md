@@ -19,8 +19,10 @@ php bin/console doctrine:fixtures:load
 
 yes
 
-symfony serve
-
-pour finir ouvrir le dossier php.ini
+ouvrir le dossier php.ini
 
 enlever le ; a la ligne : extension=fileinfo
+
+pour finir en console :
+
+symfony serve
