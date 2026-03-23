@@ -3,15 +3,15 @@
 {% block title %}CharacterClass index{% endblock %}
 
 {% block body %}
-    <h1>CharacterClass index</h1>
+    <h1>Liste des classes</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
-                <th>HealthDice</th>
-                <th>Compétence</th>
+                <th>Dé de Vie</th>
+                <th>Compétences</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -31,17 +31,17 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{{ path('app_character_class_show', {'id': character_class.id}) }}">show</a>
-                    <a href="{{ path('app_character_class_edit', {'id': character_class.id}) }}">edit</a>
+                    <a href="{{ path('app_character_class_show', {'id': character_class.id}) }}">Afficher</a>
+                    <a href="{{ path('app_character_class_edit', {'id': character_class.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune classe enregistrée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_character_class_new') }}">Create new</a>
+    <a href="{{ path('app_character_class_new') }}">Nouvelle classe</a>
 {% endblock %}

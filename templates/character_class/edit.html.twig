@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CharacterClass{% endblock %}
+{% block title %}Modification des classes{% endblock %}
 
 {% block body %}
-    <h1>Edit CharacterClass</h1>
+    <h1>Modifier les classes</h1>
 
-    {{ include('character_class/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('character_class/_form.html.twig', {'button_label': 'Mise à Jour'}) }}
 
-    <a href="{{ path('app_character_class_index') }}">back to list</a>
+    <a href="{{ path('app_character_class_index') }}">Retour</a>
 
     {{ include('character_class/_delete_form.html.twig') }}
 {% endblock %}
