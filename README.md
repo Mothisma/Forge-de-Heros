@@ -15,7 +15,7 @@ puis dans la console :
 
 php bin/console doctrine:migration:migrate
 
-php bin/console doctrine/fixtures:load
+php bin/console doctrine:fixtures:load
 
 symfony serve
 
