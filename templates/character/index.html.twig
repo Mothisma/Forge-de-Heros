@@ -5,6 +5,42 @@
 {% block body %}
     <h1>Liste des personnages</h1>
 
+    <form method="get" action="{{ path('app_character_index') }}" class="mb-3">
+
+        <label for="name">Nom :</label>
+        <input type="text" name="name" id="name" value="{{ searchedName }}">
+
+        <label for="race">Race :</label>
+        <select name="race" id="race">
+            <option value="">-- Toutes --</option>
+            <option value="1" {{ selectedRace == 1 ? 'selected' }}>Humain</option>
+            <option value="2" {{ selectedRace == 2 ? 'selected' }}>Elfe</option>
+            <option value="3" {{ selectedRace == 3 ? 'selected' }}>Nain</option>
+            <option value="4" {{ selectedRace == 4 ? 'selected' }}>Halfelin</option>
+            <option value="5" {{ selectedRace == 5 ? 'selected' }}>Demi-Orc</option>
+            <option value="6" {{ selectedRace == 6 ? 'selected' }}>Gnome</option>
+            <option value="7" {{ selectedRace == 7 ? 'selected' }}>Tieffelin</option>
+            <option value="8" {{ selectedRace == 8 ? 'selected' }}>Demi-Elfe</option>
+        </select>
+
+        <label for="class">Classe :</label>
+        <select name="class" id="class">
+            <option value="">-- Toutes --</option>
+            <option value="1" {{ selectedClass == 1 ? 'selected' }}>Barbare</option>
+            <option value="2" {{ selectedClass == 2 ? 'selected' }}>Barde</option>
+            <option value="3" {{ selectedClass == 3 ? 'selected' }}>Clerc</option>
+            <option value="4" {{ selectedClass == 4 ? 'selected' }}>Druide</option>
+            <option value="5" {{ selectedClass == 5 ? 'selected' }}>Guerrier</option>
+            <option value="6" {{ selectedClass == 6 ? 'selected' }}>Mage</option>
+            <option value="7" {{ selectedClass == 7 ? 'selected' }}>Paladin</option>
+            <option value="8" {{ selectedClass == 8 ? 'selected' }}>Ranger</option>
+            <option value="9" {{ selectedClass == 9 ? 'selected' }}>Sorcier</option>
+            <option value="10" {{ selectedClass == 10 ? 'selected' }}>Voleur</option>
+        </select>
+
+        <button type="submit">Filtrer</button>
+    </form>
+
     <table class="table">
         <thead>
             <tr>
@@ -18,7 +54,7 @@
                 <th>Charisme</th>
                 <th>Point de vie</th>
                 <th>Image</th>
-                <th>actions</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +71,7 @@
                 <td>{{ character.healthPoints }}</td>
                 <td>{{ character.image }}</td>
                 <td>
-                    <a href="{{ path('app_character_show', {'id': character.id}) }}">Afficher</a>
-                    <a href="{{ path('app_character_edit', {'id': character.id}) }}">Modifier</a>
+                    <a href="{{ path('app_character_show', {'id': character.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}

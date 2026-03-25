@@ -14,13 +14,28 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/character')]
 final class CharacterController extends AbstractController
 {
+
     #[Route(name: 'app_character_index', methods: ['GET'])]
-    public function index(CharacterRepository $characterRepository): Response
+    public function index(Request $request, CharacterRepository $characterRepository): Response
     {
+        $classId = $request->query->get('class');
+        $raceId = $request->query->get('race');
+        $name = $request->query->get('name');
+
+        $classId = ($classId === null || $classId === '') ? null : (int)$classId;
+        $raceId = ($raceId === null || $raceId === '') ? null : (int)$raceId;
+        $name = ($name === null || $name === '') ? null : $name;
+
+        $characters = $characterRepository->findByFilters($classId, $raceId, $name);
+
         return $this->render('character/index.html.twig', [
-            'characters' => $characterRepository->findAll(),
+            'characters' => $characters,
+            'selectedClass' => $classId,
+            'selectedRace' => $raceId,
+            'searchedName' => $name,
         ]);
     }
+
 
     #[Route('/new', name: 'app_character_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

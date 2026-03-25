@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscrire un personnage{% endblock %}
+
+{% block body %}
+    <h1>Inscrire un personnage au groupe : "{{ party.name }}"</h1>
+
+    {% if availableCharacters %}
+        <ul>
+            {% for character in availableCharacters %}
+                <form action="{{ path('app_party_add_character', {id: party.id, character_id: character.id}) }}" method="POST">
+                    {{ character.name }}
+                    <button type="submit">Inscrire</button>
+                </form>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Vous ne possédez aucun personnage à inscrire</p>
+    {% endif %}
+
+    <a href="{{ path('app_party_index') }}">Retour</a>
+{% endblock %}

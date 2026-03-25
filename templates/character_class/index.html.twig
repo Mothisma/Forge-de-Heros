@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CharacterClass index{% endblock %}
+{% block title %}Liste des classes{% endblock %}
 
 {% block body %}
     <h1>Liste des classes</h1>
@@ -12,7 +12,7 @@
                 <th>Description</th>
                 <th>Dé de Vie</th>
                 <th>Compétences</th>
-                <th>actions</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +31,7 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{{ path('app_character_class_show', {'id': character_class.id}) }}">Afficher</a>
-                    <a href="{{ path('app_character_class_edit', {'id': character_class.id}) }}">Modifier</a>
+                    <a href="{{ path('app_character_class_show', {'id': character_class.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}

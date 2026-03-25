@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Skill index{% endblock %}
+{% block title %}Liste des compétences{% endblock %}
 
 {% block body %}
-    <h1>Skill index</h1>
+    <h1>Compétences</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Ability</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Capacités</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,16 @@
                 <td>{{ skill.name }}</td>
                 <td>{{ skill.ability }}</td>
                 <td>
-                    <a href="{{ path('app_skill_show', {'id': skill.id}) }}">show</a>
-                    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">edit</a>
+                    <a href="{{ path('app_skill_show', {'id': skill.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucune compétence trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_skill_new') }}">Create new</a>
+    <a href="{{ path('app_skill_new') }}">Créer une nouvelle compétence</a>
 {% endblock %}

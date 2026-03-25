@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Skill{% endblock %}
+{% block title %}Compétence{% endblock %}
 
 {% block body %}
-    <h1>Skill</h1>
+    <h1>Compétence</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ skill.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ skill.name }}</td>
             </tr>
             <tr>
-                <th>Ability</th>
+                <th>Capacités</th>
                 <td>{{ skill.ability }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_skill_index') }}">back to list</a>
+    <a href="{{ path('app_skill_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">edit</a>
+    <a href="{{ path('app_skill_edit', {'id': skill.id}) }}">Modifier</a>
 
     {{ include('skill/_delete_form.html.twig') }}
 {% endblock %}

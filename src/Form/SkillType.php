@@ -18,7 +18,7 @@ class SkillType extends AbstractType
             ->add('ability')
             ->add('Classes', EntityType::class, [
                 'class' => CharacterClass::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
             ])
         ;

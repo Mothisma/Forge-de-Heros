@@ -28,9 +28,9 @@ class CharacterType extends AbstractType
             ->add('charisma', null, ['attr' => ['min' => 8, 'max' => 15]])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'allow_delete' => true, // coche pour supprimer l'image existante
+                'allow_delete' => true,
                 'delete_label' => 'Supprimer l\'avatar',
-                'download_uri' => false,  // pas de lien de téléchargement
+                'download_uri' => false, 
                 'label' => 'Avatar'
             ])
             ->add('race', EntityType::class, [

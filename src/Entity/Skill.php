@@ -20,7 +20,7 @@ class Skill
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Choice(['STR','DEX','CON','INT','WIS','CHA'])]
+    #[Assert\Choice(choices: ['STR','DEX','CON','INT','WIS','CHA'])]
     private ?string $ability = null;
 
     /**

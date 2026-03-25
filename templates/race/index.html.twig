@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Race index{% endblock %}
+{% block title %}Liste des races{% endblock %}
 
 {% block body %}
-    <h1>Race index</h1>
+    <h1>Races</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,16 @@
                 <td>{{ race.name }}</td>
                 <td>{{ race.description }}</td>
                 <td>
-                    <a href="{{ path('app_race_show', {'id': race.id}) }}">show</a>
-                    <a href="{{ path('app_race_edit', {'id': race.id}) }}">edit</a>
+                    <a href="{{ path('app_race_show', {'id': race.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucune race trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_race_new') }}">Create new</a>
+    <a href="{{ path('app_race_new') }}">Créer une nouvelle race</a>
 {% endblock %}

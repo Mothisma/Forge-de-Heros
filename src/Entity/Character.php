@@ -59,7 +59,7 @@ class Character
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $User = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
@@ -214,12 +214,12 @@ class Character
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): static
+    public function setUser(?User $user): static
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }
