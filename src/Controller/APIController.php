@@ -122,7 +122,7 @@ class APIController extends AbstractController
             'strength' => $character->getStrength(),
             'dexterity' => $character->getDexterity(),
             'constitution' => $character->getConstitution(),
-            'intelligence' => $character->getIntelligence(),
+            'intelligence' => $character->getInteligence(),
             'wisdom' => $character->getWisdom(),
             'charisma' => $character->getCharisma(),
             'healthPoints' => $character->getHealthPoints(),
